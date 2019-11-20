@@ -1,0 +1,13 @@
+-- Haskell Playground 1.0
+toDigitsRev 4012888888881881
+toDigitsRev (-123456)
+
+toDigits 123456
+toDigits (-123456)
+
+doubleEveryOther [1,8,8,1,8,8,8,8,8,8,8,8,2,1,0,4]
+
+validate 1111111
+
+--validate 4012888888881881
+--validate 4012888888881882
