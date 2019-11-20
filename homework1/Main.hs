@@ -7,7 +7,7 @@ toDigitsRev x
   | otherwise = (x `mod` 10):toDigitsRev (x `div` 10)
   
 isNegative x = x < 0
-isSingleInteger x = x >= 1 && x <= 9
+isSingleInteger x = x >= 0 && x < 10
 
 toDigits :: Integer -> [Integer]
 
