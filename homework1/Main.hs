@@ -1,3 +1,5 @@
+-- exercise 1-4
+
 toDigitsRev :: Integer -> [Integer]
 
 toDigitsRev 0 = []
@@ -33,3 +35,11 @@ sumValueOfInteger number
 validate :: Integer -> Bool
 
 validate creditCardNumber = (sumDigits $ doubleEveryOther $ toDigitsRev creditCardNumber) `mod` 10 == 0
+
+-- exercise 5
+
+type Peg = String
+type Move = (Peg, Peg)
+
+hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
+hanoi 0 _ _ _ = []
