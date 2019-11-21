@@ -50,4 +50,6 @@ hanoi numberOfDiscs peg1 peg2 peg3
   move (numberOfDiscs - 1) peg3 peg2 peg1
 
 move :: Integer -> Peg -> Peg -> Peg -> [Move]
+move 0 _ _ _ = []
+move 1 startingPeg destinationPeg _ = [(startingPeg, destinationPeg)]
 move numberOfDiscs startingPeg destinationPeg tempPeg
