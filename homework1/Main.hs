@@ -43,13 +43,4 @@ type Move = (Peg, Peg)
 
 hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
 hanoi 0 _ _ _ = []
-hanoi 1 peg1 _ peg3 = [(peg1, peg3)]
-hanoi numberOfDiscs peg1 peg2 peg3
-  moves = move (numberOfDiscs - 1) peg1 peg3 peg2
-  (peg1, peg2)
-  move (numberOfDiscs - 1) peg3 peg2 peg1
-
-move :: Integer -> Peg -> Peg -> Peg -> [Move]
-move 0 _ _ _ = []
-move 1 startingPeg destinationPeg _ = [(startingPeg, destinationPeg)]
-move numberOfDiscs startingPeg destinationPeg tempPeg
+hanoi numberOfDiscs peg1 peg2 peg3 = hanoi (numberOfDiscs - 1) peg1 peg3 peg2 ++ [(peg1, peg2)] ++ hanoi (numberOfDiscs - 1) peg3 peg2 peg1
