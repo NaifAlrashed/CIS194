@@ -40,6 +40,14 @@ parseRestOfMessage :: String -> (Maybe String, String)
 parseRestOfMessage [] = (Nothing, [])
 parseRestOfMessage message = (Just message, [])
     
-
 readInt :: String -> Int
 readInt = read
+
+insert :: LogMessage -> MessageTree -> MessageTree
+insert (Unknown _) messageTree = messageTree
+insert logMessage Leaf = Node Leaf logMessage Leaf
+insert newLogMessage (Node leftMessageTree logMessage rightMessageTree) = leftMessageTree
+
+retrieveTimeStamp :: LogMessage -> TimeStamp
+retrieveTimeStamp (LogMessage _ timeStamp _) = timeStamp
+retrieveTimeStamp (Unknown _)  = undefined 
