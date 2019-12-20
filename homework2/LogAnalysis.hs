@@ -3,6 +3,9 @@ module LogAnalysis where
 
 import Log
 
+parse :: String -> [LogMessage]
+parse logs = map parseMessage (lines logs)
+
 parseMessage :: String -> LogMessage
 
 parseMessage message =
