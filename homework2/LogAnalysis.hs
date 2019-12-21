@@ -46,7 +46,12 @@ readInt = read
 insert :: LogMessage -> MessageTree -> MessageTree
 insert (Unknown _) messageTree = messageTree
 insert logMessage Leaf = Node Leaf logMessage Leaf
-insert newLogMessage (Node leftMessageTree logMessage rightMessageTree) = leftMessageTree
+insert newLogMessage (Node leftMessageTree logMessage rightMessageTree)
+  | retrieveTimeStamp newLogMessage > retrieveTimeStamp logMessage = 
+      Node leftMessageTree logMessage (insert newLogMessage rightMessageTree)
+  | retrieveTimeStamp newLogMessage < retrieveTimeStamp logMessage = 
+      Node (insert newLogMessage leftMessageTree) logMessage rightMessageTree
+  | retrieveTimeStamp newLogMessage == retrieveTimeStamp logMessage = undefined 
 
 retrieveTimeStamp :: LogMessage -> TimeStamp
 retrieveTimeStamp (LogMessage _ timeStamp _) = timeStamp
