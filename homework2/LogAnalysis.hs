@@ -56,3 +56,7 @@ insert newLogMessage (Node leftMessageTree logMessage rightMessageTree)
 retrieveTimeStamp :: LogMessage -> TimeStamp
 retrieveTimeStamp (LogMessage _ timeStamp _) = timeStamp
 retrieveTimeStamp (Unknown _)  = undefined 
+
+build :: [LogMessage] -> MessageTree
+build [] = Leaf
+build (logMessage:logMessages) = insert logMessage (build $ logMessages)
