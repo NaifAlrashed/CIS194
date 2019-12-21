@@ -64,3 +64,18 @@ build (logMessage:logMessages) = insert logMessage (build $ logMessages)
 inOrder :: MessageTree -> [LogMessage]
 inOrder Leaf = []
 inOrder (Node leftTree logMessage rightTree) = inOrder leftTree ++ [logMessage] ++ inOrder rightTree
+
+whatWentWrong :: [LogMessage] -> [String]
+whatWentWrong [] = []
+whatWentWrong logMessages = map retrieveMessage (filter isImportantLog (sortMessages logMessages))
+
+isImportantLog :: LogMessage -> Bool
+isImportantLog (LogMessage (Error severity) _ _) = severity > 50
+isImportantLog _ = False
+
+sortMessages :: [LogMessage] -> [LogMessage]
+sortMessages = inOrder . build
+
+retrieveMessage :: LogMessage -> String
+retrieveMessage (Unknown message) = message
+retrieveMessage (LogMessage _ _ message) = message
