@@ -60,3 +60,7 @@ retrieveTimeStamp (Unknown _)  = undefined
 build :: [LogMessage] -> MessageTree
 build [] = Leaf
 build (logMessage:logMessages) = insert logMessage (build $ logMessages)
+
+inOrder :: MessageTree -> [LogMessage]
+inOrder Leaf = []
+inOrder (Node leftTree logMessage rightTree) = inOrder leftTree ++ [logMessage] ++ inOrder rightTree
